@@ -4,8 +4,7 @@ import {
   loginUser,
   registrarUsuario,
 } from '@/Db/Controllers/users/firebaseControllerUsers';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import firebaseApp from '@/Db/firebaseConfig';
+
 
 const Modal = ({onClose, onSubmit, setSession,session}) => {
   const [isRegistrando, setIsRegistrando] = useState (false);
@@ -32,19 +31,7 @@ const Modal = ({onClose, onSubmit, setSession,session}) => {
   };
 
 
-  const auth = getAuth(firebaseApp);
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/auth.user
-      const uid = user.uid;
-      console.log(uid);
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
+ 
 
 
   return (<>

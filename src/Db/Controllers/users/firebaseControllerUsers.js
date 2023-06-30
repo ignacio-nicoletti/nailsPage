@@ -2,6 +2,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -53,3 +54,21 @@ export async function loginUser(email, password) {
 
   return data;
 }
+
+export const sesionLogged = () => {
+  const auth = getAuth();
+  // onAuthStateChanged =
+  //   (auth,
+  //   (user) => {
+  //     if (user) {
+  //       // User is signed in, see docs for a list of available properties
+  //       // https://firebase.google.com/docs/reference/js/auth.user
+  //       const uid = user.uid;
+  //       console.log(uid);
+  //       // ...
+  //     } else {
+  //       // User is signed out
+  //       // ...
+  //     }
+  //   });
+};

@@ -1,10 +1,26 @@
-import {DataServices} from '@/Db/database';
+import {
+  getServices,
+} from '@/Db/Controllers/services/firebaseControllerServices';
+
 import {useEffect, useState} from 'react';
+import Contact from '../contact/contact';
+
+import Horarios from '../horarios/horarios';
+import TicketTotal from '../ticketTotal/ticketTotal';
 import styles from './services.module.css';
 
-const Services = () => {
+const Services = ({breadcrumbs, setBreadcrumbs}) => {
   const [items, setItems] = useState ([]);
-  const [total, setTotal] = useState ([]);
+  const [fecha, setFecha] = useState ('');
+  const [categorias, setCategorias] = useState ([
+    'Todo',
+    'Remover',
+    'Manos',
+    'Pies',
+  ]);
+  const [dataList, setDataList] = useState ([]);
+  const [filter, setFilter] = useState ('Todo');
+  const [dataFilter, setDatafilter] = useState ([]);
 
   const handleCheckboxChange = (value, price) => {
     const item = {value, price};
@@ -19,72 +35,71 @@ const Services = () => {
   const isSelected = value => {
     return items.some (item => item.value === value);
   };
-
-  let suma = 0;
   useEffect (
     () => {
-      items.forEach (function (item) {
-        suma += item.price;
-      });
-      setTotal (suma);
+      getServices ().then (data => setDataList (data));
+      if (dataList) {
+        filter !== 'Todo'
+          ? setDatafilter (dataList.filter (e => e.category === filter))
+          : setDatafilter (dataList);
+      }
     },
-    [items]
+    [filter, dataList]
   );
-
   return (
     <div className={styles.servicesAndTotal}>
+      {breadcrumbs === 'servicios'
+        ? <div className={styles.servicesContain}>
+            <h2>Servicios</h2>
+            <div className={styles.filter}>
+              <select
+                name=""
+                id=""
+                onChange={() => setFilter (event.target.value)}
+              >
+                {categorias.map ((e, i) => (
+                  <option key={i} value={e}>{e}</option>
+                ))}
 
-      <div className={styles.servicesContain}>
-        <h2>Servicios</h2>
-        {DataServices.map (item => (
-          <div key={item.value} className={styles.serviceDetail}>
-            <div className={styles.containercheck}>
-
-              <label>
-                {item.label}
-                <input
-                  type="checkbox"
-                  value={item.value}
-                  checked={isSelected (item.value)}
-                  onChange={() => handleCheckboxChange (item.value, item.price)}
-                />
-                <span class={styles.checkmark} />
-              </label>
+              </select>
             </div>
 
-            <div className={styles.servicePrice}>
-              <p>${item.price}</p>
-            </div>
+            {dataFilter.map ((item, index) => (
+              <div key={index} className={styles.serviceDetail}>
+                <div className={styles.containercheck}>
+
+                  <label>
+                    {item.nameService}
+                    <input
+                      type="checkbox"
+                      value={item.nameService}
+                      checked={isSelected (item.nameService)}
+                      onChange={() =>
+                        handleCheckboxChange (item.nameService, item.price)}
+                    />
+                    <span className={styles.checkmark} />
+                  </label>
+                </div>
+
+                <div key={index} className={styles.servicePrice}>
+                  <p>${item.price}</p>
+                </div>
+              </div>
+            ))}
+
           </div>
-        ))}
+        : breadcrumbs === 'horarios'
+            ? <div className={styles.horario}>
 
-      </div>
+                <Horarios setFecha={setFecha} setBreadcrumbs={setBreadcrumbs} />
+              </div>
+            : <Contact fecha={fecha} items={items} />}
 
-      <div className={styles.totalContain}>
-        <div className={styles.ticket}>
-          <p>Ticket de compra</p>
-          {items.map ((e, index) => (
-            <div key={index} className={styles.detailTicket}>
-              <p>{e.value}</p>
-              <p>${e.price}</p>
-            </div>
-          ))}
-
-          <div className={styles.TicketTotal}>
-            <p>
-              Total:
-            </p>
-            <p>
-              ${total}
-            </p>
-          </div>
-        </div>
-        {total > 0
-          ? 
-              <button className={styles.TicketButton} onClick={""}>Reservar turno</button>
-           
-          : ''}
-      </div>
+      <TicketTotal
+        items={items}
+        setBreadcrumbs={setBreadcrumbs}
+        breadcrumbs={breadcrumbs}
+      />
 
     </div>
   );

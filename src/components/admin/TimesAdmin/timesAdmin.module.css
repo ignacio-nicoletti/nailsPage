@@ -1,0 +1,15 @@
+.forms {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(3, 108, 111);
+    padding: 10%;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  
+  .horarios {
+    margin-inline: 1%;
+    width: 40%;
+  }
+  

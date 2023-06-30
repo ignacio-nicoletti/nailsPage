@@ -1,0 +1,37 @@
+.containContact {
+  width: 50%;
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containContact p{
+    margin-top: 5%;
+}
+
+.containContact form {
+  display: flex;
+  /* padding-top: 15%; */
+  flex-direction: column;
+  /* background-color: white; */
+  width: 50%;
+}
+
+.containContact form input {
+  border-radius: 15px;
+  padding: 5%;
+  margin: 5%;
+}
+
+.containContact form button {
+  border-radius: 10px;
+  padding: 1%;
+  /* width: 80%; */
+  /* margin-left: 10%; */
+  background-color: #d88c9a;
+}
+
+.info{
+    font-size: 0.6rem;
+}

@@ -1,0 +1,9 @@
+.contain {
+  display: flex;
+  height: 80vh;
+  padding-top: 10%;
+  width: 100%;
+  justify-content: center;
+}
+
+

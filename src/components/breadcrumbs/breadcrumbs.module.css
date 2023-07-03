@@ -11,13 +11,15 @@
   justify-content: space-evenly;
 }
 
-.servicio {
+.servicio :hover{
+  cursor: pointer;
 }
 
-.contacto {
+.contacto :hover{
+  cursor: pointer;
 }
-
-.horario {
+.horarios :hover{
+  cursor: pointer;
 }
 
 .userContain {

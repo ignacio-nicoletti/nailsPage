@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Arvo&family=Barlow:wght@500&display=swap");
+
+.contain {
+  width: 25%;
+  height: 15%;
+  display: flex;
+  padding-top: 2%;
+  padding-inline: 1%;
+  background-color: red;
+  position: absolute;
+  left: 40%;
+  border-radius: 15px;
+  border: solid black 3px;
+  text-align: center;
+  font-family: "Arvo", serif;
+}

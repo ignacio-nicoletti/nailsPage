@@ -9,7 +9,7 @@ import Horarios from '../horarios/horarios';
 import TicketTotal from '../ticketTotal/ticketTotal';
 import styles from './services.module.css';
 
-const Services = ({breadcrumbs, setBreadcrumbs}) => {
+const Services = ({breadcrumbs, setBreadcrumbs,SetOnError}) => {
   const [items, setItems] = useState ([]);
   const [fecha, setFecha] = useState ('');
   const [categorias, setCategorias] = useState ([
@@ -93,7 +93,7 @@ const Services = ({breadcrumbs, setBreadcrumbs}) => {
 
                 <Horarios setFecha={setFecha} setBreadcrumbs={setBreadcrumbs} />
               </div>
-            : <Contact fecha={fecha} items={items} />}
+            : <Contact fecha={fecha} items={items} SetOnError={SetOnError} />}
 
       <TicketTotal
         items={items}

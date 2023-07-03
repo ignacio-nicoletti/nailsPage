@@ -30,7 +30,7 @@ const Breadcrumbs = ({breadcrumbs, setBreadcrumbs, setSession, session}) => {
         </div>
         <div className={styles.line}>
           <p>
-            {'======>'}
+            {' ======> '}
           </p>
         </div>
 
@@ -39,12 +39,12 @@ const Breadcrumbs = ({breadcrumbs, setBreadcrumbs, setSession, session}) => {
           onClick={() => setBreadcrumbs ('horarios')}
         >
           <p>
-            Horarios{' '}
+            Horarios {' '}
           </p>
         </div>
         <div className={styles.line}>
           <p>
-            {'======>'}
+            {' ======> '}
           </p>
         </div>
         <div

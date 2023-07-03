@@ -9,7 +9,7 @@ const Breadcrumbs = ({breadcrumbs, setBreadcrumbs, setSession, session}) => {
   const [isModalOpen, setIsModalOpen] = useState (false);
 
   const handleModalOpen = () => {
-    setIsModalOpen (true);
+    setIsModalOpen (!isModalOpen);
   };
 
   const handleModalClose = () => {

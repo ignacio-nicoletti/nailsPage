@@ -24,7 +24,11 @@ export default function Home() {
         session={session}
       />
       {session === "user" ? (
-        <Services SetOnError={SetOnError} breadcrumbs={breadcrumbs} setBreadcrumbs={setBreadcrumbs} />
+        <Services
+          SetOnError={SetOnError}
+          breadcrumbs={breadcrumbs}
+          setBreadcrumbs={setBreadcrumbs}
+        />
       ) : (
         <Admin />
       )}
